@@ -1,14 +1,16 @@
 # Singularity image of Polysolver
 
-## Building a Singularity image of Polysolver
+First of all, install [Singularity](https://www.sylabs.io/singularity).
 
-To build a [Singularity](https://www.sylabs.io/singularity) image of [Polysolver](https://hub.docker.com/r/sachet/polysolver), run:
+## Building/getting the Singularity image of Polysolver
+
+To build the Singularity image of [Polysolver](https://hub.docker.com/r/sachet/polysolver), run:
 
 ```bash
 sudo singularity build polysolver-singularity_v4.sif Singularity.v4
 ```
 
-Alternatively, pull an image from [Singularity Hub](https://singularity-hub.org/collections/2862) by running:
+To pull the Singularity image of Polysolver from [Singularity Hub](https://singularity-hub.org/collections/2862), run:
 
 ```bash
 singularity pull shub://IARCbioinfo/polysolver-singularity:v4
@@ -18,7 +20,7 @@ The `Singularity.v4` file instructs Singularity to build an image of Polysolver 
 
 It also instructs Singularity to perform some changes on the image in order to make the HLA typing functionality of Polysolver working.
 
-To do so, the Polysolver script `shell_call_hla_type` located (in the image) at `/home/polysolver/scripts/` needs a couple of modifications, as described below.
+To do so, the Polysolver script `shell_call_hla_type` located (in the image) at `/home/polysolver/scripts/` needs a couple of modifications, as described below **for information** (these modifications are done by the `Singularity.v4` file during the build).
 
 ## The `Singularity.v4` file
 
@@ -57,7 +59,7 @@ sed -i 's.6:31268749-31272105.chr6:31268749-31272105.g' /home/polysolver/scripts
 
 ## Running the HLA typing functionality of Polysolver
 
-Once the image `polysolver-singularity_v4.sif` built using the `Singularity.v4` file as described above (or pulled from [Singularity Hub](https://singularity-hub.org/collections/2862)), one can execute the `shell_call_hla_type` script as follows:
+Once the Singularity image `polysolver-singularity_v4.sif` built using the `Singularity.v4` file as described above (or pulled from Singularity Hub), one can execute the `shell_call_hla_type` script as follows:
 
 ```bash
 singularity exec -C \
