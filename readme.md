@@ -92,12 +92,30 @@ Usage: /home/polysolver/scripts/shell_call_hla_type bam race includeFreq build f
     -outDir: output directory
 ```
 
+## Other Polysolver modules
+
+**WARNING: only the HLA typing functionality of Polysolver was tested. The two other modules might work using something like:**
+
+### POLYSOLVER-based mutation detection
+```
+singularity exec -C \
+-B /path/to/your/data/directory_with_bams_and_winners_hla_file:/data \
+-B /path/to/your/temporary/folder:/tmp \
+polysolver-singularity_v4.sif /home/polysolver/scripts/shell_call_hla_mutations_from_type \
+/data/yourNormalBamFile.bam /data/yourTumorBamFile.bam /data/winners.hla.txt build format /data
+```
+###  Annotation of mutations
+```
+singularity exec -C \
+-B /path/to/your/data/directory_with_mutation_detection_output:/data \
+-B /path/to/your/temporary/folder:/tmp \
+polysolver-singularity_v4.sif /home/polysolver/scripts/shell_annotate_hla_mutations \
+prefix /data
+```
 ## Cautions
 
 The `Singularity.v4` file only allows to build a Singularity image of Polysolver version 4 coming from the Docker Hub repository of its author.
 
-Only the HLA typing functionality of Polysolver was addressed.
+The methods implemented into Polysolver should not be impacted by our changes.
 
-The methods implemented into Polysolver should not be impacted.
-
-Singularity version 3.1.1 was used.
+Singularity version 3.1.1 was used for tests.
